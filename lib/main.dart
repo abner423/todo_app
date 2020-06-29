@@ -20,20 +20,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class homeIntro extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child:RaisedButton(
-          child:Text("navegação") 
-          ,onPressed: (){
-            Navigator.push(context, MaterialPageRoute(
-              builder: (BuildContext context) => HomePage()));
-              })
-        ),
-    );
-  }
-}

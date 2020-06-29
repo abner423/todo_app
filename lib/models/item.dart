@@ -1,8 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 class Item {
   String title;
   bool done;
 
-  Item({this.title,this.done});
+  DocumentReference reference;
+
+  Item({this.title,this.done,this.reference});
+
+  factory Item.fromSnapshot(DocumentSnapshot snapshot){
+    Item item = Item.fromJson(snapshot.data);
+    item.reference = snapshot.reference;
+    return item;
+  }
 
   Item.fromJson(Map<String, dynamic> json) {
     title = json['title'];

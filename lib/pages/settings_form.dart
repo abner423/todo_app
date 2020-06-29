@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:todo/models/item.dart';
 import 'package:todo/pages/home.dart';
+import 'package:todo/repository/database.dart';
 
 class SettingsForm extends StatefulWidget {
 String itemName = "";
-State parent;
-List items;
-SettingsForm(this.parent,this.items);
+database repository;
+SettingsForm(this.repository);
   @override
   _SettingsFormState createState() => _SettingsFormState();
 }
@@ -33,9 +33,8 @@ class _SettingsFormState extends State<SettingsForm> {
             ),
             onPressed: (){
               if(widget.itemName.isNotEmpty && widget.itemName.trim() != ""){
-                widget.parent.setState(() {
-                  widget.items.add(Item(title: widget.itemName,done:false));
-                });
+                widget.repository.addItem(Item(title: widget.itemName,done:false));
+                Navigator.pop(context);
               }
             },
           )
